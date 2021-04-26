@@ -32,7 +32,7 @@ const Home = () => {
                 
             </div>
             
-            <Parallax bgImage={ guitar } bgImageAlt="guitar" strength={600}>
+            <Parallax bgImage={ cheers2 } bgImageAlt="guitar" strength={400}>
                 <div style={{height: 1000}}>
                     <div style={insideStyles}>
                         <h1>Join us for an exceptional music experience</h1>

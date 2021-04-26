@@ -14,6 +14,9 @@ import axios from 'axios';
 const Details = (props) => {
     const accessToken = useAuth(props.code);
     const [song, setSong] = useState({});  
+    const [artist, setArtist] = useState({});
+    const [year, setYear] = useState("");
+    const [albumName, setAlbumName] = useState({});
 
     // useEffect(() => {
     //     if (!accessToken) {
@@ -46,6 +49,9 @@ const Details = (props) => {
         })
         .then(res => {
             setSong(res.data);
+            setArtist(res.data.artists[0]);
+            setYear(res.data.album.release_date);
+            setAlbumName(res.data.album);
             console.log(res.data);
         })
         .catch((err) => {
@@ -58,7 +64,7 @@ const Details = (props) => {
         <div>
                 <h1 style={{"margin": "20px", "textAlign": "left"}}>Music Ninjas</h1>
                 <br />
-                    <img src={song.album.images[1].url} alt={song.name} />
+                    {/* <img src={song.album.images[1].url} alt={song.name} /> */}
                 <br />
                 <table style={{"border" : "1px solid white", "margin": "60px"}}>
                     <tbody>
@@ -68,15 +74,15 @@ const Details = (props) => {
                         </tr>
                         <tr>
                             <td style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Artist: </td>
-                            <td style={{"textAlign": "left"}}>{song.artists[0].name}</td>
+                            <td style={{"textAlign": "left"}}>{artist.name}</td>
                         </tr>
                         <tr>
                             <td style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Year: </td>
-                            <td style={{"textAlign": "left"}}>{song.album.release_date.slice(0, 4)}</td>
+                            <td style={{"textAlign": "left"}}>{year.slice(0,4)}</td>
                         </tr>
                         <tr>
                             <td style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Album: </td>
-                            <td style={{"textAlign": "left"}}>{song.album.name}</td>
+                            <td style={{"textAlign": "left"}}>{albumName.name}</td>
                         </tr>
                     </tbody>
                 </table>
