@@ -56,8 +56,7 @@ module.exports = {
         
         (async () => {
             const user = await spotifyApi.getMe();
-            console.log(user.body);
-            
+                        
             User.create({
                 username: user.body.id,
                 email: user.body.email,
@@ -75,6 +74,32 @@ module.exports = {
             .catch(err => {
                 console.error(err);
             });
+        
+        // Need to check and handle duplicated user
+    },
 
+    getAll: (req, res) => {
+        User.find({})
+            .then((allUsers) => {
+                res.json(allUsers);
+            })
+            .catch((err) => {
+                console.log("error found in getAll");
+                console.log(err);
+                res.json(err);
+            });
+    }, 
+
+    delete: (req, res) => {
+        User.findByIdAndDelete( req.params.id )
+            .then((deletedUser) => {
+                console.log(deletedUser);
+                res.json(deletedUser);
+            })
+            .catch((err) => {
+                console.log("error found in delete");
+                console.log(err);
+                res.json(err);
+            });
     }
 }
