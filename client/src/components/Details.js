@@ -14,6 +14,7 @@ import axios from 'axios';
 const Details = (props) => {
     const accessToken = useAuth(props.code);
     const [song, setSong] = useState({});  
+    const [albumImage, setAlbumImage] = useState({});
     const [artist, setArtist] = useState({});
     const [year, setYear] = useState("");
     const [albumName, setAlbumName] = useState({});
@@ -49,6 +50,7 @@ const Details = (props) => {
         })
         .then(res => {
             setSong(res.data);
+            setAlbumImage(res.data.album.images[0]);
             setArtist(res.data.artists[0]);
             setYear(res.data.album.release_date);
             setAlbumName(res.data.album);
@@ -64,7 +66,9 @@ const Details = (props) => {
         <div>
                 <h1 style={{"margin": "20px", "textAlign": "left"}}>Music Ninjas</h1>
                 <br />
-                    {/* <img src={song.album.images[1].url} alt={song.name} /> */}
+                    <div style={{"textAlign": "left", "marginLeft": "60px"}}>
+                        <img src={albumImage.url} alt={song.name} />
+                    </div>
                 <br />
                 <table style={{"border" : "1px solid white", "margin": "60px"}}>
                     <tbody>
