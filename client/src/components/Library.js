@@ -9,7 +9,10 @@ const spotifyApi = new SpotifyWebApi({
 })
 
 const Library = (props) => {
-
+ //searchbar
+    const [userId, setUserId] = useState();
+    
+// main
     const accessToken = props.accessToken
     // console.log(accessToken)
 
@@ -35,7 +38,8 @@ const Library = (props) => {
             accessToken
         })
         .then(res => {
-            console.log("create successful");
+            console.log(res.data);
+            setUserId(res.data._id);
         })
         .catch((err) => {
             console.log("Error found when creating user", err);
