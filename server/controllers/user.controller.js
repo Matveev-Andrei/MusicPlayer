@@ -66,9 +66,16 @@ module.exports = {
                     res.json(newUser);
                 })
                 .catch((err) => {
-                    console.log("Error found in create");
+                    if(err.code === 11000 && err.name === 'MongoError') {
+                        console.log("found user");
+                        User.findOne({username: user.body.id})
+                            .then((foundUser) => res.json(foundUser));
+                    } 
+                    else {
+                    console.log("Non-duplicate error found in create");
                     console.log(err);
-                    res.json(err);
+                    res.json(err); 
+                    }
                 })
         })()
             .catch(err => {
