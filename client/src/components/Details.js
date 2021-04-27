@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import useAuth from "./useAuth";
 import Player from "./Player";
 // import SpotifyWebApi from 'spotify-web-api-node';
 import axios from 'axios';
@@ -12,7 +11,7 @@ import axios from 'axios';
 
 
 const Details = (props) => {
-    const accessToken = useAuth(props.code);
+    const accessToken = props.accessToken
     const [song, setSong] = useState({});  
     const [albumImage, setAlbumImage] = useState({});
     const [artist, setArtist] = useState({});

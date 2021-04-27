@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from '@reach/router';
-import useAuth from './useAuth';
 import SpotifyWebApi from 'spotify-web-api-node';
 import axios from 'axios';
 
@@ -10,8 +9,10 @@ const spotifyApi = new SpotifyWebApi({
 
 const Library = (props) => {
 
-    const accessToken = useAuth(props.code);
+    
+    const accessToken = props.accessToken
 
+        console.log(accessToken)
     useEffect(() => {
         if(!accessToken) return;
         spotifyApi.setAccessToken(accessToken);

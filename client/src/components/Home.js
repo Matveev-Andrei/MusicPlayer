@@ -9,7 +9,7 @@ import turntable from '../images/turntable.jpg'; //strength: 600
 const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=3c1ea11d29eb442c95c650380ba9f81b&response_type=code&redirect_uri=http://localhost:3000/library&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"
 
 const insideStyles = {
-    background: "#fff", 
+    background: "transparent", 
     left: '50%', 
     top: '50%', 
     position: 'absolute', 

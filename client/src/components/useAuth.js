@@ -17,8 +17,8 @@ const useAuth = (code) => {
             setExpiresIn(res.data.expiresIn)
             window.history.pushState({}, null, "/")
         })
-        .catch(() => {
-            window.location = "/"
+        .catch((err) => {
+            console.log(err)
         })
     }, [code])
 
@@ -35,8 +35,8 @@ const useAuth = (code) => {
                     setAccessToken(res.data.accessToken)
                     setExpiresIn(res.data.expiresIn)
                     })
-                    .catch(() => {
-                    window.location = "/"
+                    .catch((err) => {
+                    console.log(err)
                     })
             }, (expiresIn - 60) * 1000)
         
