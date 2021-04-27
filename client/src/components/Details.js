@@ -62,8 +62,8 @@ const Details = (props) => {
 
 
     return (
-        <div>
-                <h1 style={{"margin": "20px", "textAlign": "left"}}>Music Ninjas</h1>
+        <div style={{backgroundColor: "#222326", height:"100vh"}}>
+                <h1 style={{padding:"20px", backgroundColor:"#1db954", color : "#fff", "textAlign": "left"}}>Music Ninjas</h1>
                 <br />
                     <div style={{"textAlign": "left", "marginLeft": "60px"}}>
                         <img src={albumImage.url} alt={song.name} />
