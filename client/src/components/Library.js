@@ -27,7 +27,7 @@ const Library = (props) => {
         })
         .then(res => {
             console.log(res.data);
-            setUserId(res.data.id);
+            setUserId(res.data._id);
         })
         .catch((err) => {
             console.log("Error found when creating user", err);
