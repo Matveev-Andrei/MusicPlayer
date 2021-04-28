@@ -3,6 +3,7 @@ import {Link} from '@reach/router';
 import SpotifyWebApi from 'spotify-web-api-node';
 import {Form} from 'react-bootstrap';
 import axios from 'axios';
+import musicNinjas from '../images/MusicNinjas.png';
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "3c1ea11d29eb442c95c650380ba9f81b"
@@ -73,9 +74,11 @@ const Library = (props) => {
 
     return (
         <div>
-            <h1 style={{"margin": "20px", "textAlign": "left"}}>Music Ninjas</h1>
-            <br />
-            <br />
+            <header className="p-4 bg-light"  >
+                <div style={{ "display": "flex", "justifyContent": "center", }}>
+                    <img style={{height : "150px", boxSizing:"border-box", boxShadow:"6px 4px 4px #c7c7c7, -0.1em 0.1em .4em #a7a7a7"}} src={musicNinjas} alt=""/>
+                </div>
+            </header>
             <div style={{"display": "flex", "justifyContent": "space-around"}}>
                 <h1 style={{"margin": "20px", "textAlign": "left", "fontSize": "45px"}}>Your library</h1>
                 <Form.Control 
