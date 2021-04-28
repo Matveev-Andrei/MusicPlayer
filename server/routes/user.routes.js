@@ -6,7 +6,4 @@ module.exports = (app) => {
     app.post('/create', UserController.create);
     app.get('/users', UserController.getAll);
     app.delete('/users/:id', UserController.delete);
-
-    app.put('/addsong', UserController.addSong);
-    app.put('/removesong', UserController.removeSong);
 }
