@@ -108,5 +108,49 @@ module.exports = {
                 console.log(err);
                 res.json(err);
             });
+    },
+
+    addSong: (req, res) => {
+        User.findByIdAndUpdate(req.body.userId, {
+            $push: {
+                favoriteSongs: {
+                    songId: req.body.songId,
+                    name: req.body.name,
+                    artist: req.body.artist
+                }
+            }
+        },
+        {
+            new: true,
+            runValidators: true
+        })
+            .then((updatedUser) => {
+                console.log(updatedUser);
+                res.json(updatedUser);
+            })
+            .catch((err) => {
+                console.log("error found in addSong");
+                console.log(err);
+                res.json(err);
+            })
+    },
+
+    removeSong: (req, res) => {
+        User.findByIdAndUpdate(req.body.userId, {
+            $pull: {
+                "favoriteSongs": {
+                    songId: req.body.songId
+                }
+            }
+        }, {new: true})
+            .then((updatedUser) => {
+                console.log(updatedUser);
+                res.json(updatedUser);
+            })
+            .catch((err) => {
+                console.log("error found in removeSong");
+                console.log(err);
+                res.json(err);
+            })
     }
 }
