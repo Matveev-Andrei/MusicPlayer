@@ -62,34 +62,31 @@ const Details = (props) => {
 
 
     return (
-        <div style={{backgroundColor: "#222326", height:"100vh"}}>
-                <h1 style={{padding:"20px", backgroundColor:"#1db954", color : "#fff", "textAlign": "left"}}>Music Ninjas</h1>
-                <br />
-                    <div style={{"textAlign": "left", "marginLeft": "60px"}}>
+        <div style={{backgroundColor: "#222326", height:"100%"}}>
+                <h1 style={{padding:"20px", backgroundColor:"#1db954", color : "#fff", "textAlign": "left"}}>Music Ninjas Player</h1>
+                    <div className="mt-5" style={{"textAlign": "left", "marginLeft": "60px"}}>
                         <img src={albumImage.url} alt={song.name} />
                     </div>
-                <br />
-                <table style={{"border" : "1px solid white", "margin": "60px"}}>
+                <table className="m-5">
                     <tbody>
                         <tr>
-                            <td style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Song: </td>
-                            <td style={{"textAlign": "left"}}>{song.name}</td>
+                            <td className="text-white text-left" style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Song: </td>
+                            <td className="text-white text-left" style={{"textAlign": "left"}}>{song.name}</td>
                         </tr>
                         <tr>
-                            <td style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Artist: </td>
-                            <td style={{"textAlign": "left"}}>{artist.name}</td>
+                            <td className="text-white text-left" style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Artist: </td>
+                            <td className="text-white text-left" style={{"textAlign": "left"}}>{artist.name}</td>
                         </tr>
                         <tr>
-                            <td style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Year: </td>
-                            <td style={{"textAlign": "left"}}>{year.slice(0,4)}</td>
+                            <td className="text-white text-left" style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Year: </td>
+                            <td className="text-white text-left" style={{"textAlign": "left"}}>{year.slice(0,4)}</td>
                         </tr>
                         <tr>
-                            <td style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Album: </td>
-                            <td style={{"textAlign": "left"}}>{albumName.name}</td>
+                            <td className="text-white text-left" style={{"textAlign": "right", "padding" : "10px", "fontWeight": "bold"}}>Album: </td>
+                            <td className="text-white text-left" style={{"textAlign": "left"}}>{albumName.name}</td>
                         </tr>
                     </tbody>
                 </table>
-                <br />
                 <Player accessToken={accessToken} trackUri={song.uri} />
         </div>
     )
