@@ -64,10 +64,12 @@ module.exports = {
             })
                 .then((newUser) => {
                     res.json(newUser);
+                    console.log(newUser);
                 })
                 .catch((err) => {
                     if(err.code === 11000 && err.name === 'MongoError') {
-                        console.log("found user");
+                        console.log("found user")
+                        console.log(user.body.id)
                         User.findOne({username: user.body.id})
                             .then((foundUser) => res.json(foundUser));
                     } 
@@ -111,12 +113,16 @@ module.exports = {
     },
 
     addSong: (req, res) => {
-        User.findByIdAndUpdate(req.body.userId, {
+        console.log(req.body)
+        console.log(req.params)
+        User.findByIdAndUpdate({_id : req.params.id}, {
+            
             $push: {
                 favoriteSongs: {
                     songId: req.body.songId,
                     name: req.body.name,
-                    artist: req.body.artist
+                    artist: req.body.artist,
+                    image : req.body.image
                 }
             }
         },
@@ -152,5 +158,6 @@ module.exports = {
                 console.log(err);
                 res.json(err);
             })
-    }
+    },
+
 }

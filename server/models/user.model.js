@@ -18,8 +18,8 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [ true, "You need to provide a display name"]
     },
-    ,
-    favoriteSongs: [{
+    
+    favoriteSongs:[{
         songId: {
             type: String,
             required: [ true, "Please provide this song's id from spotify"]
@@ -31,6 +31,9 @@ const UserSchema = new mongoose.Schema({
         artist: {
             type: String,
             required: [ true, "Please provide the artist of this song"]
+        },
+        image : {
+            type : String
         }
     }]
 }, { timestamps: true});

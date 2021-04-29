@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const db_name = "music_ninjas";
+mongoose.set('useFindAndModify', false);
 
 mongoose.connect("mongodb://localhost/" + db_name, {
     useNewUrlParser: true,

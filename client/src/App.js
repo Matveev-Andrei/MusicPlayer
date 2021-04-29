@@ -4,8 +4,12 @@ import Library from './components/Library';
 import Details from './components/Details';
 import {Router} from '@reach/router';
 import useAuth from './components/useAuth'
+import Favorites from './components/Favorites'
+import SpotifyWebApi from 'spotify-web-api-node';
 
-
+const spotifyApi = new SpotifyWebApi({
+  clientId: "3c1ea11d29eb442c95c650380ba9f81b"
+})
 const code = new URLSearchParams(window.location.search).get("code");
 
 // const oauthToken = 'BQD_OEa3K12JwEwBgFxuEDoQVfoOuubn6Oex4A7UYGFbFT_qAhVX_AFDBdpvRRqFuUp77sNhoHmzK-RoTnv2lEbpNpt8cfXYN2U2u-JFNmIMINpKmgg_fe7q5psnhpq2tyDmcftoFns4ucMOJwgpd7RCzwMN5N6aJG7wb4hV4XJBhkEAlwAxoH67Le5-nZD7SGGAPaHDIDhQSQvYr4WBESt2F0xvpkpijCsNnXjMtLwzIhgt8J6puig_yS113ZPeBgatLL6IDub7yNzyDiC09u4m9rtBLUSJydjJ_LcwqYOk';
@@ -21,6 +25,7 @@ function App() {
             <Home path="/" />
             <Library accessToken={accessToken} code={code} path="/library" />
             <Details accessToken={accessToken} code={code} path="/details/:_id" />
+            <Favorites spotifyApi={spotifyApi} accessToken={accessToken} code={code} path="/favorites"/>
           </Router>
     </div>
 

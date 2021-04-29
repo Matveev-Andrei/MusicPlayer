@@ -29,14 +29,14 @@ const Home = () => {
         <div>
             <header className="p-4 bg-light"  >
                 <div style={{ "display": "flex", "justifyContent": "center", }}>
-                    <img style={{height : "150px", boxSizing:"border-box", boxShadow:"6px 4px 4px #c7c7c7, -0.1em 0.1em .4em #a7a7a7"}} src={musicNinjas} alt=""/>
+                    <img style={{height : "150px", boxSizing:"border-box", boxShadow:"6px 4px 4px #c7c7c7, -0em 0.1em .4em #a7a7a7"}} src={musicNinjas} alt=""/>
                 </div>
             </header>
             <main style={{backgroundColor:"#edf0f3" }}>
                 <Parallax className="mb-5" bgImage={cheers2} bgImageAlt="guitar" strength={400}>
                     <div style={{ height: '80vh' }}>
                         <div style={insideStyles}>
-                            <h1>Join us for an exceptional music experience</h1>
+                            <h1 className="text-black">Join us for an exceptional music experience</h1>
                             <a href={AUTH_URL}><button style={{textAlign:"center", cursor: "pointer", "border": "1px solid peachpuff", "borderRadius": "5px", "width": "200px", "height": "40px", "backgroundColor": "SandyBrown", "color": "whitesmoke", "fontWeight": "bold", "fontSize": "16px" }}>GET STARTED</button></a>
                         </div>
                     </div>
