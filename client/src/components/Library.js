@@ -163,7 +163,7 @@ const Library = (props) => {
             <div className="mx-auto mt-5" style={{ width: "40%", overflowY: "auto", maxHeight: "60vh" }}>
                 {
                     searchResults.map((track, index) => (
-                        <div className="d-flex m-2 align-items-center rounded-lg border border-dark p-2">
+                        <div style={{backgroundColor:"rgb(208, 215, 222)"}} className="d-flex m-2 align-items-center rounded-lg border border-light p-2">
                             <img src={track.image} style={{ height: "64px", width: "64px" }} alt="" />
                             <div className="ml-3 d-flex justify-content-between w-100">
                                 <div style={{ maxWidth: "35%" }}>
