@@ -17,12 +17,14 @@ function App() {
     clientId: "3c1ea11d29eb442c95c650380ba9f81b"
   })
   const accessToken = useAuth(code)
+  const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=3c1ea11d29eb442c95c650380ba9f81b&response_type=code&redirect_uri=http://localhost:3000/library&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"
+
   console.log(accessToken)
   return (
 
     <div className="App">
           <Router>
-            <Home path="/" />
+            <Home accessToken={accessToken} code={code} auth={AUTH_URL} path="/" />
             <Library accessToken={accessToken} code={code} path="/library" />
             <Details accessToken={accessToken} code={code} path="/details/:_id" />
             <Favorites spotifyApi={spotifyApi} accessToken={accessToken} code={code} path="/favorites"/>

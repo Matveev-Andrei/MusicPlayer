@@ -2,6 +2,7 @@ import guitar from '../images/guitar.jpg'; //strength: 600
 import turntable from '../images/turntable.jpg'; //strength: 600
 import acousticGuitar from '../images/acoustic_guitar.jpg'; //strength:700
 import React from 'react';
+import { Link, navigate } from '@reach/router';
 import karaoke from '../images/karaoke.png';
 import { Parallax } from 'react-parallax';
 import cheers2 from '../images/cheers2.jpg'; //strength: 400
@@ -12,7 +13,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import WebIcon from '@material-ui/icons/Web';
 
-const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=3c1ea11d29eb442c95c650380ba9f81b&response_type=code&redirect_uri=http://localhost:3000/library&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"
+// const AUTH_URL = "https://accounts.spotify.com/authorize?client_id=3c1ea11d29eb442c95c650380ba9f81b&response_type=code&redirect_uri=http://localhost:3000/library&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"
 
 const insideStyles = {
     background: "transparent",
@@ -23,7 +24,7 @@ const insideStyles = {
     transform: 'translate(-50%, -50%)',
 }
 
-const Home = () => {
+const Home = (props) => {
 
     return (
         <div>
@@ -37,7 +38,7 @@ const Home = () => {
                     <div style={{ height: '80vh' }}>
                         <div style={insideStyles}>
                             <h1 className="text-black">Join us for an exceptional music experience</h1>
-                            <a href={AUTH_URL}><button style={{textAlign:"center", cursor: "pointer", "border": "1px solid peachpuff", "borderRadius": "5px", "width": "200px", "height": "40px", "backgroundColor": "SandyBrown", "color": "whitesmoke", "fontWeight": "bold", "fontSize": "16px" }}>GET STARTED</button></a>
+                            <button onClick={() => navigate(`${props.auth}`)} style={{textAlign:"center", cursor: "pointer", "border": "1px", "borderRadius": "5px", "width": "200px", "height": "40px", "backgroundColor": "SandyBrown", "color": "whitesmoke", "fontWeight": "bold", "fontSize": "16px" }}>GET STARTED</button>
                         </div>
                     </div>
                 </Parallax>

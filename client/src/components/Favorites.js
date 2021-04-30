@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import musicNinjas from '../images/MusicNinjas.png';
 import { Container } from 'react-bootstrap'
 import { Link, navigate } from '@reach/router';
 import Button from '@material-ui/core/Button';
@@ -45,8 +46,13 @@ export default function Favorites(props) {
 
 
     return (
-        <div style={{ background: "linear-gradient(#212c39, #121e3d 50%, #000)"}}>
-            <Container style={{ height: '100vh', backgroundColor: "#d0d7de", padding: "2%" }} >
+        <div style={{ background: "linear-gradient(#212c39, #121e3d 50%, #000)", minHeight: '100vh'}}>
+            <Container style={{ minHeight: '100vh', backgroundColor: "#d0d7de", }} >
+            <header className="p-4 mb-5">
+                <div style={{ "display": "flex", "justifyContent": "center", }}>
+                    <img style={{height : "150px", boxSizing:"border-box", boxShadow:"6px 4px 4px #c7c7c7, -0em 0.1em .4em #a7a7a7"}} src={musicNinjas} alt=""/>
+                </div>
+            </header>
                 <div className="d-flex justify-content-between">
                     <h1 className="mb-4 text-left">{user.display_name}'s Favorites 🎵</h1>
                     <div>
@@ -58,15 +64,16 @@ export default function Favorites(props) {
                         </Button>
                     </div>
                 </div>
-                <div className="d-flex align-items-center">
+                <hr/>
+                <div className="d-flex align-content-start align-items-center flex-wrap">
                     {favorites.map((track, index) => (
                             <div key={index} className="d-inline-flex flex-wrap m-2 justify-content-center align-items-start border border-dark rounded-lg p-2"
-                                style={{ width: '12.5%', height: "23vh", backgroundColor: "#3c415c" }}>
+                                style={{ width: '18.53%', minHeight: "24vh", backgroundColor: "#3c415c" }}>
                                 <Link to={`/details/${track.songId}`}><img style={{ width: '100%' }} src={track.image} alt="" /></Link>
-                                <div>
+                                <div className="align-self-end">
                                     <div className="text-white" style={{ width: "100%", overflow: "hidden", maxHeight: "8vh" }}><Link style={{ "text-decoration": "none", }}to={`/details/${track.songId}`}>{track.name}</Link></div>
                                     <div className="text-muted">{track.artist}</div>
-                                    <Button style={{"marginTop": "7px"}} variant="contained" color="secondary" onClick={() => deleteSong(userId, track.songId)} ><DeleteForeverOutlinedIcon style={{fontSize: "28px", color:"white"}} /> </Button>
+                                    <Button className="align-self-end" variant="contained" color="secondary" onClick={() => deleteSong(userId, track.songId)} ><DeleteForeverOutlinedIcon  style={{fontSize: "28px", color:"white",marginTop: "1px"}} /></Button>
                                 </div>
                             </div>
                     ))
