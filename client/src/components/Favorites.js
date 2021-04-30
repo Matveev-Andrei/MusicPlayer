@@ -37,8 +37,12 @@ export default function Favorites(props) {
                 songId
         }).then((res) => {
             console.log(res.data);
-            setFavorites(favorites.filter((song) => song._id !== songId));
-            window.location.reload(false);
+            setFavorites(favorites.filter((song) => {
+                console.log(song.name + " " + (song.songId !== songId))
+                return song.songId !== songId
+            }));
+            //the line bellow is braking our current code, fixed some of the line above
+            // window.location.reload(false);
         })
             .catch((err) => console.log(err))
     }
