@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from '@reach/router';
 import SpotifyWebApi from 'spotify-web-api-node';
-import { Form } from 'react-bootstrap';
+import { Form, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import musicNinjas from '../images/MusicNinjas.png';
 import { navigate } from '@reach/router';
@@ -27,10 +27,11 @@ const Library = (props) => {
 
     // main
     const accessToken = props.accessToken
-
     const [search, setSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [selectTrack, setSelectTrack] = useState({});
+    const [confirmMsg, setConfirmMsg] = useState("");
+
     // POPER START
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -63,7 +64,10 @@ const Library = (props) => {
             artist: selectTrack.artist,
             image: selectTrack.image
 
-        }).then((res) => console.log(res.data))
+        }).then((res) => {
+            console.log(res.data);
+            setConfirmMsg(`Successfully added! Click Favorites from MENU to view all added songs.`)
+        })
             .catch((err) => console.log(err))
         setSearch("");
     }
@@ -118,57 +122,57 @@ const Library = (props) => {
 
     return (
         <div style={{ height: '100vh' }} className="bg-light">
-            <header className="p-4 bg-light mb-5 d-flex justify-content-between"  >
-                <div className="mx-auto" style={{ display: "flex", justifyContent: "center", }}>
-                    <img style={{ height: "150px", boxSizing: "border-box", boxShadow: "6px 4px 4px #c7c7c7, -0em 0.1em .4em #a7a7a7" }} src={musicNinjas} alt="" />
-                </div>
-                <div className="m-3">
-                    <Button
-                        ref={anchorRef}
-                        aria-controls={open ? 'menu-list-grow' : undefined}
-                        aria-haspopup="true"
-                        variant="contained"
-                        onClick={handleToggle}
-                        color="primary"
-                    >
-                    Menu
-                    </Button>
-                    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                        {({ TransitionProps, placement }) => (
-                            <Grow
-                                {...TransitionProps}
-                                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                            >
-                                <Paper>
-                                    <ClickAwayListener onClickAway={handleClose}>
-                                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                            <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
-                                            <MenuItem onClick={() => navigate('/favorites')}>Favorites</MenuItem>
-                                        </MenuList>
-                                    </ClickAwayListener>
-                                </Paper>
-                            </Grow>
-                        )}
-                    </Popper>
-                </div>
-            </header>
+                <header className="p-4 bg-light mb-5 d-flex justify-content-between"  >
+                    <div className="mx-auto" style={{ display: "flex", justifyContent: "center", }}>
+                        <img style={{ height: "150px", boxSizing: "border-box", boxShadow: "6px 4px 4px #c7c7c7, -0em 0.1em .4em #a7a7a7" }} src={musicNinjas} alt="" />
+                    </div>
+                    <div className="m-3">
+                        <Button
+                            ref={anchorRef}
+                            aria-controls={open ? 'menu-list-grow' : undefined}
+                            aria-haspopup="true"
+                            variant="contained"
+                            onClick={handleToggle}
+                            color="primary"
+                        >
+                        Menu
+                        </Button>
+                        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                            {({ TransitionProps, placement }) => (
+                                <Grow
+                                    {...TransitionProps}
+                                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                                >
+                                    <Paper>
+                                        <ClickAwayListener onClickAway={handleClose}>
+                                            <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                                <MenuItem onClick={() => navigate('/')}>Home</MenuItem>
+                                                <MenuItem onClick={() => navigate('/favorites')}>Favorites</MenuItem>
+                                            </MenuList>
+                                        </ClickAwayListener>
+                                    </Paper>
+                                </Grow>
+                            )}
+                        </Popper>
+                    </div>
+                </header>
             <Form.Control
                 type="search"
                 placeholder="Search Songs or Artists"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={e => {setSearch(e.target.value); setConfirmMsg("")}}
                 className="mx-auto mt-5"
                 style={{ "height": "50px", "width": "25%", "borderRadius": "10px" }}
             />
             <div className="mx-auto mt-5" style={{ width: "40%", overflowY: "auto", maxHeight: "60vh" }}>
                 {
                     searchResults.map((track, index) => (
-                        <div style={{backgroundColor:"rgb(208, 215, 222)"}} className="d-flex m-2 align-items-center rounded-lg border border-light p-2">
+                        <div key={index} style={{backgroundColor:"rgb(208, 215, 222)"}} className="d-flex m-2 align-items-center rounded-lg border border-light p-2">
                             <img src={track.image} style={{ height: "64px", width: "64px" }} alt="" />
                             <div className="ml-3 d-flex justify-content-between w-100">
                                 <div style={{ maxWidth: "35%" }}>
-                                    <div>{track.title}</div>
-                                    <div className="text-muted">{track.artist}</div>
+                                    <div style={{textAlign: "left"}}>{track.title}</div>
+                                    <div style={{textAlign: "left"}} className="text-muted">{track.artist}</div>
                                 </div>
                                 <div className="d-flex align-items-center">
                                     <button onMouseDown={() => setSelectTrack(track)} onClick={() => chooseTrack(track)} className="btn btn-success">Add to Favorites</button>
@@ -177,6 +181,12 @@ const Library = (props) => {
                             </div>
                         </div>
                     ))
+                }
+            </div>
+            <div>
+                { confirmMsg ? 
+                    <Alert style={{fontSize: "20px", verticalAlign: "center", width: "700px", margin: "auto"}}variant="success"> {confirmMsg} </Alert> :
+                    null
                 }
             </div>
         </div>
