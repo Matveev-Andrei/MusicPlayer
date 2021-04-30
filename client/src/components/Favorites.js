@@ -54,7 +54,7 @@ export default function Favorites(props) {
             <Container style={{ minHeight: '100vh', backgroundColor: "#d0d7de", }} >
             <header className="p-4 mb-5">
                 <div style={{ "display": "flex", "justifyContent": "center", }}>
-                    <img style={{height : "150px", boxSizing:"border-box", boxShadow:"6px 4px 4px #c7c7c7, -0em 0.1em .4em #a7a7a7"}} src={musicNinjas} alt=""/>
+                <img className="border rounded-lg" style={{height : "150px", boxSizing:"border-box", boxShadow:"6px 4px 4px #c7c7c7, 0.1em 0.1em .4em #9c9c9c"}} src={musicNinjas} alt="music ninjas logo"/>
                 </div>
             </header>
                 <div className="d-flex justify-content-between">

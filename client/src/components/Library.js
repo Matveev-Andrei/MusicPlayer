@@ -124,7 +124,7 @@ const Library = (props) => {
         <div style={{ height: '100vh' }} className="bg-light">
                 <header className="p-4 bg-light mb-5 d-flex justify-content-between"  >
                     <div className="mx-auto" style={{ display: "flex", justifyContent: "center", }}>
-                        <img style={{ height: "150px", boxSizing: "border-box", boxShadow: "6px 4px 4px #c7c7c7, -0em 0.1em .4em #a7a7a7" }} src={musicNinjas} alt="" />
+                    <img className="border rounded-lg" style={{height : "150px", boxSizing:"border-box", boxShadow:"6px 4px 4px #c7c7c7, 0.1em 0.1em .4em #9c9c9c"}} src={musicNinjas} alt="music ninjas logo"/>
                     </div>
                     <div className="m-3">
                         <Button

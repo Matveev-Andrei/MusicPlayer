@@ -82,9 +82,9 @@ const Details = (props) => {
             <header className="d-flex justify-content-between" style={{ height: "15%", backgroundColor: "#1db954", padding: "20px" }}>
                 <h1 style={{ color: "#fff", "textAlign": "left" }}>Music Ninjas Player🎧</h1>
                 <div className="align-self-center mr-5" style={{fontSize: "large"}}>
-                    <Link className="btn btn-warning text-white" to="/">Home</Link>
-                    <Link className="ml-4 btn btn-warning text-white" to="/library">Play a different song</Link>
-                    <Link className="ml-4 btn btn-warning text-white" to="/favorites">Go to Favorites</Link>
+                    <Link className="btn btn-success text-white" to="/">Home</Link>
+                    <Link className="ml-4 btn btn-success text-white" to="/library">Play a different song</Link>
+                    <Link className="ml-4 btn btn-success text-white" to="/favorites">Go to Favorites</Link>
                 </div>
             </header>
             <main className="d-flex justify-content-between ">
